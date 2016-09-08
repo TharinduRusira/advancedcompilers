@@ -14,7 +14,7 @@ int a,b;
 
 void sub(int x1,int x2, int y1,int y2){
 // let's do a quick sanity check to make sure we are getting 4-bit unsigned integers
-if(x1<0 || x1>15 || x2<0 || x2>15 || y1<0 || y1>15 || y2<0 || y2>15){printf("bad input...\n");return;}
+if(x1<0 || x1>15 || x2<0 || x2>15 || y1<0 || y1>15 || y2<0 || y2>15 || x1>x2 || y1>y2){printf("bad input...\n");return;}
 
 	a = x1 - y2;
 	b = x2 - y1;
@@ -30,15 +30,16 @@ if(x1<0 || x1>15 || x2<0 || x2>15 || y1<0 || y1>15 || y2<0 || y2>15){printf("bad
 	}
 /* If a, the lower bound underflows, eg. (-2,5), we approximate the lowerbound to 0, which gives us the interval (0,5)*/
 /* If b, the upper bound underflows or less than a valid lowerbound, eg. (2,-1),  we approximate the upper bound to 15, which gives us the interval (2,15) */
-	
+	printf("(%d,%d)-(%d,%d)=(%d,%d)\n",x1,x2,y1,y2,a,b);
 }
 
 
 
 int main(void){
-
+//test cases
+	sub(4,5,1,2);
 	sub(1,2,3,4);
-	printf("(%d,%d)-(%d,%d)=(%d,%d)",x1,x2,y1,y2,a,b);
+	sub(5,6,7,8);
 
 return 0;
 }
