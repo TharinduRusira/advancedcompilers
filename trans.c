@@ -13,6 +13,9 @@ We can shift bits to keep the last 4 bits and chop the rest of the bit string to
 int a,b;
 
 void sub(int x1,int x2, int y1,int y2){
+// let's do a quick sanity check to make sure we are getting 4-bit unsigned integers
+if(x1<0 || x1>15 || x2<0 || x2>15 || y1<0 || y1>15 || y2<0 || y2>15){printf("bad input...\n");return;}
+
 	a = x1 - y2;
 	b = x2 - y1;
 
@@ -22,9 +25,11 @@ void sub(int x1,int x2, int y1,int y2){
 	if(a<0){
 		a=0; //rounding to 0, closest value in the range [0,15]
 	}
-	if(b<0){
-		b=0; //rounding to 0, closest value in the range [0,15]
+	if(b<0 || b<a){
+		b=15; //rounding to 15, closest value in the range [0,15]
 	}
+/* If a, the lower bound underflows, eg. (-2,5), we approximate the lowerbound to 0, which gives us the interval (0,5)*/
+/* If b, the upper bound underflows or less than a valid lowerbound, eg. (2,-1),  we approximate the upper bound to 15, which gives us the interval (2,15) */
 	
 }
 
@@ -33,7 +38,7 @@ void sub(int x1,int x2, int y1,int y2){
 int main(void){
 
 	sub(1,2,3,4);
-	printf("a=%d\tb=%d\n",a,b);
+	printf("(%d,%d)-(%d,%d)=(%d,%d)",x1,x2,y1,y2,a,b);
 
 return 0;
 }
