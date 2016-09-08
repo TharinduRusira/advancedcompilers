@@ -6,7 +6,7 @@ The subtraction operation is defined by [x1,x2]-[y1,y2] = [x1-y2,x2-y1]
 https://en.wikipedia.org/wiki/Interval_arithmetic#Simple_arithmetic
 
 Since 4-bit integers are used, 0<x,y<15 and we are required to wrap around underflows(negetive values), overflows will not occur because the subtracted result is always less than or equal to 15. 
-We can shift bits to keep the last 4 bits and chop the rest of the bit string to address this issue.
+
 */
 
 #include <stdio.h>
