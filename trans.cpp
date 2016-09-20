@@ -37,8 +37,8 @@ interval interval::subtract(interval x, interval y){
 	 * We are rounding the values that are outside our abstract domain [-16,15] so that there will be no undefined behavior
 	 */
 
-	if(a<-16){a=16- a%16;}
-	if(b>15){b=-16-b%16;}
+	if(a<-16){a=16 - a%16;}
+	if(b>15){b=-16 + b%16;}
 	//if a>b after wrapping around, return TOP
 	if(b<a){a=-16;b=15;}
 
@@ -73,7 +73,7 @@ int main(void){
 
 interval i1(10,12); interval i2(0,7);
 interval i3(-10,-5); interval i4(-15,0);
-interval i5(-12,15); interval i6(-3,-4);
+interval i5(-12,15); interval i6(-4,-3);
 
 cout << "Interval subtract"<<endl;
 //subtract test cases
