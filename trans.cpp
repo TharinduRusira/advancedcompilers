@@ -51,8 +51,16 @@ interval interval::bitwise_and(interval x, interval y){
 	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<x.hi || y.lo<y.hi));
 	int a,b;
 	if(x.hi<0 &&  y.hi<0) {a=-16;b=-1;} // both intervals are in the negative range (leading bit is 1)
-	else if(x.lo>=0 && y.hi>=0) {a=0;b=15;} // both intervals are in the positive range (leading bit is 0)
+	else if(x.lo>=0 && y.lo>=0) {a=0;b=15;} // both intervals are in the positive range (leading bit is 0)
+	else if((x.hi<0 && y.lo>=0)||(x.lo>=0 && y.hi<0))
+	{
+		//result is positive
+		a = 0; b=15;
+		//can we give a more precise answer than [0,15]?
+	
+	}// if one interval is positive and the other is negative, result will be in positive range
 	else {a=-16;b=15;} //defaulting to TOP
+	
 
 	cout << "(" << x.lo<< ","<< x.hi << ")&("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
 
