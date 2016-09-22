@@ -27,7 +27,7 @@ interval::interval(int x,int y){
 } 
 interval interval::subtract(interval x, interval y){
 	// let's do a quick sanity check to make sure we are getting 5-bit unsigned integers
-	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<x.hi || y.lo<y.hi));
+	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<=x.hi || y.lo<=y.hi));
 	int a,b;
 	// we do the subtraction y-x
 	a = x.lo-y.hi;
@@ -42,13 +42,13 @@ interval interval::subtract(interval x, interval y){
 	//if a>b after wrapping around, return TOP
 	if(b<a){a=-16;b=15;}
 
-	cout << "(" << y.lo<< ","<< y.hi << ")-("<<x.lo<<","<<x.hi<<")=("<<a<<","<<b<<")"<<endl;
+	cout << "(" << x.lo<< ","<< x.hi << ")-("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
 	return interval(a,b);
 }
 
 interval interval::bitwise_and(interval x, interval y){
 
-	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<x.hi || y.lo<y.hi));
+	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<=x.hi || y.lo<=y.hi));
 	int a,b;
 	if(x.hi<0 &&  y.hi<0) {a=-16;b=-1;} // both intervals are in the negative range (leading bit is 1)
 	else if(x.lo>=0 && y.lo>=0) {a=0;b=15;} // both intervals are in the positive range (leading bit is 0)
@@ -83,7 +83,7 @@ interval::subtract(i5,i1);
 interval::subtract(i4,i1);
 interval::subtract(i5,i6);
 interval::subtract(i2,i6);
-interval::subtract(i8,i7);
+interval::subtract(i7,i8);
 
 cout << "Interval bitwise-AND"<<endl;
 //bitwise-AND test cases
