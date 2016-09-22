@@ -29,7 +29,7 @@ interval interval::subtract(interval x, interval y){
 	// let's do a quick sanity check to make sure we are getting 5-bit unsigned integers
 	assert((x.lo>=-16 || x.lo<=15 || x.hi>=-16 || x.hi<=15 || y.lo>=-16 || y.lo<=15 || y.hi>=-16 || y.hi<=15 || x.lo<=x.hi || y.lo<=y.hi));
 	int a,b;
-	// we do the subtraction y-x
+	// we do the subtraction x-y
 	a = x.lo-y.hi;
 	b = x.hi - y.lo;
 
@@ -42,7 +42,7 @@ interval interval::subtract(interval x, interval y){
 	//if a>b after wrapping around, return TOP
 	if(b<a){a=-16;b=15;}
 
-	cout << "(" << x.lo<< ","<< x.hi << ")-("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
+	//cout << "(" << x.lo<< ","<< x.hi << ")-("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
 	return interval(a,b);
 }
 
@@ -62,7 +62,7 @@ interval interval::bitwise_and(interval x, interval y){
 	else {a=-16;b=15;} //defaulting to TOP
 	
 
-	cout << "(" << x.lo<< ","<< x.hi << ")&("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
+	//cout << "(" << x.lo<< ","<< x.hi << ")&("<<y.lo<<","<<y.hi<<")=("<<a<<","<<b<<")"<<endl;
 
 	return interval(a,b);
 }
@@ -75,7 +75,7 @@ interval i1(10,12); interval i2(0,7);
 interval i3(-10,-5); interval i4(-15,0);
 interval i5(-12,15); interval i6(-4,-3);
 interval i7(-16,-16); interval i8(-16,-15);
-cout << "Interval subtract"<<endl;
+//cout << "Interval subtract"<<endl;
 //subtract test cases
 interval::subtract(i2,i1);
 interval::subtract(i3,i4);
@@ -85,7 +85,7 @@ interval::subtract(i5,i6);
 interval::subtract(i2,i6);
 interval::subtract(i7,i8);
 
-cout << "Interval bitwise-AND"<<endl;
+//cout << "Interval bitwise-AND"<<endl;
 //bitwise-AND test cases
 interval::bitwise_and(i1,i2);
 interval::bitwise_and(i3,i6);
