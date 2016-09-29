@@ -7,8 +7,10 @@ interval interval::operator-(const interval &y){
 	/*
 	 * We are rounding the values that are outside our abstract domain [-32,31] so that there will be no undefined behavior
 	 */
-	if(a<MIN){a=(MAX+1) - a%(MAX+1);}
-	if(b>MAX){b=MIN + b%(-1*MIN);}
+	if(a<MIN){a=-MIN + a%(-MIN);}
+	else if(a>MAX){a = -MAX + a%(-MAX);}
+	if (b>MAX){b= -MAX + b%(-MAX);}
+	else if(b<MIN){b= -MIN + b%(-MIN);}
 	//if a>b after wrapping around, return TOP
 	if(b<a){return top();}
 	return interval(a,b) ;

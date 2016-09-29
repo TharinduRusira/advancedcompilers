@@ -5,9 +5,9 @@ int main(void){
 //test cases
 
 interval i1(10,12); interval i2(0,7);
-interval i3(-10,-5); interval i4(-15,0);
-interval i5(-12,15); interval i6(-4,-3);
-interval i7(-16,-16); interval i8(-16,-15);
+interval i3(-20,-5); interval i4(-15,0);
+interval i5(-30,15); interval i6(-4,-3);
+interval i7(-32,-32); interval i8(1,1);
 //cout << "Interval operator-"<<endl;
 //operator- test cases
 cout << i1<< "-"<< i2 << "="<< i1.operator-(i2) << endl;
